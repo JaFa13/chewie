@@ -259,7 +259,7 @@ class ChewieController extends ChangeNotifier {
   final bool showControlsOnInitialize;
 
   /// Whether or not to show the controls at all
-  final bool showControls;
+  bool showControls;
 
   /// Defines customised controls. Check [MaterialControls] or
   /// [CupertinoControls] for reference.
@@ -339,16 +339,10 @@ class ChewieController extends ChangeNotifier {
 
   bool get isPlaying => videoPlayerController.value.isPlaying;
 
-  bool _hideControlsNow = false;
-
-  bool get shouldHideControlsNow {
-    return _hideControlsNow;
-  }
-
   void hideControls() {
-    _hideControlsNow = true;
+    showControls = true;
     notifyListeners();
-    _hideControlsNow = false;
+    showControls = false;
   }
 
   Future _initialize() async {

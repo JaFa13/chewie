@@ -529,7 +529,7 @@ class _CupertinoControlsState extends State<CupertinoControls>
   }
 
   void _chewieListener() async {
-    if (chewieController.shouldHideControlsNow) {
+    if (!chewieController.showControls) {
       setState(() {
         _hideStuff = true;
         _hideTimer?.cancel();

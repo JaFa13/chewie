@@ -376,7 +376,7 @@ class _MaterialControlsState extends State<MaterialControls>
   }
 
   void _chewieListener() async {
-    if (chewieController.shouldHideControlsNow) {
+    if (!chewieController.showControls) {
       setState(() {
         _hideStuff = true;
         _hideTimer?.cancel();
