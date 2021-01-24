@@ -100,6 +100,7 @@ class _CupertinoControlsState extends State<CupertinoControls>
 
   void _dispose() {
     controller.removeListener(_updateState);
+    chewieController.removeListener(_chewieListener);
     _hideTimer?.cancel();
     _expandCollapseTimer?.cancel();
     _initTimer?.cancel();
@@ -509,6 +510,7 @@ class _CupertinoControlsState extends State<CupertinoControls>
 
   Future<void> _initialize() async {
     controller.addListener(_updateState);
+    controller.addListener(_chewieListener);
 
     _updateState();
 
@@ -522,6 +524,15 @@ class _CupertinoControlsState extends State<CupertinoControls>
         setState(() {
           _hideStuff = false;
         });
+      });
+    }
+  }
+
+  void _chewieListener() async {
+    if (chewieController.shouldHideControlsNow) {
+      setState(() {
+        _hideStuff = true;
+        _hideTimer?.cancel();
       });
     }
   }
