@@ -102,7 +102,7 @@ class _ChewieDemoState extends State<ChewieDemo> {
             ),
             FlatButton(
               onPressed: () {
-                _chewieController.hideControls();
+                _chewieController.enterFullScreen();
               },
               child: const Text('Fullscreen'),
             ),

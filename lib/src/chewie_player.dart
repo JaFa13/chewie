@@ -340,9 +340,9 @@ class ChewieController extends ChangeNotifier {
   bool get isPlaying => videoPlayerController.value.isPlaying;
 
   void hideControls() {
-    showControls = true;
-    notifyListeners();
     showControls = false;
+    notifyListeners();
+    showControls = true;
   }
 
   Future _initialize() async {

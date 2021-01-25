@@ -56,7 +56,7 @@ class _MaterialControlsState extends State<MaterialControls>
         _cancelAndRestartTimer();
       },
       child: GestureDetector(
-        onTap: () => _cancelAndRestartTimer(),
+        onTap: () => _playPause(),
         child: AbsorbPointer(
           absorbing: _hideStuff,
           child: Column(
@@ -348,9 +348,9 @@ class _MaterialControlsState extends State<MaterialControls>
   void _cancelAndRestartTimer() {
     _hideTimer?.cancel();
     _startHideTimer();
-
+    // _playPause();
     setState(() {
-      _hideStuff = false;
+      _hideStuff = chewieController.isFullScreen ? false : true;
       _displayTapped = true;
     });
   }
@@ -375,7 +375,7 @@ class _MaterialControlsState extends State<MaterialControls>
     }
   }
 
-  void _chewieListener() async {
+  void _chewieListener() {
     if (!chewieController.showControls) {
       setState(() {
         _hideStuff = true;
@@ -409,7 +409,7 @@ class _MaterialControlsState extends State<MaterialControls>
     setState(() {
       if (controller.value.isPlaying) {
         playPauseIconAnimationController.reverse();
-        _hideStuff = false;
+        _hideStuff = chewieController.isFullScreen ? false : true;
         _hideTimer?.cancel();
         controller.pause();
       } else {
